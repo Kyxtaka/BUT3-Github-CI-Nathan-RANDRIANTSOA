@@ -1,17 +1,27 @@
 name: Code Check + cov test
-on: [push]
+on:
+  push:
+    branches: [ main ]
+
+env: 
+  PYTHON_VERSION: "3.12.10" 
+  PYTHONPATH: "./src"
 
 jobs:
 
   flake8:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - run: pip install flake8 autopep8
-      - run: pip install -r requirements.txt
+      - uses: actions/checkout@v4
+
+      - name: set up python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v6
+        with: 
+          python-version: ${{ env.PYTHON_VERSION }} 
+
+        run: |
+          pip install flake8 autopep8
+          pip install -r requirements.txt
 
       - name: run-flake8
         run: PYTHONPATH=./src flake8 **/*.py || true
@@ -22,10 +32,12 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+      - uses: actions/checkout@v4
+
+      - name: set up python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v6
+        with: 
+          python-version: ${{ env.PYTHON_VERSION }} 
 
       - name: install-dependencies
         run: pip install -r ./requirements.txt
