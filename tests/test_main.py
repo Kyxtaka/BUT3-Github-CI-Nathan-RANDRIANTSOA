@@ -10,7 +10,7 @@ def test_add():
     assert add(5,7) == 12  
 
 def test_sub():
-    assert sub(5 - 5) == 0
+    assert sub(5, 5) == 0
 
 
     
