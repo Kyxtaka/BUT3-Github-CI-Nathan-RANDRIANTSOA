@@ -10,14 +10,13 @@ env:
   PYTHON_VERSION: "3.12.10" 
   PYTHONPATH: "./src"
   COVERAGE_RCFILE: ".coveragerc" 
-  COVERAGE_PATH: "./coverage_html_report"
 
 jobs:
 
-  linter:
+  flake8:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - name: set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v6
@@ -35,10 +34,10 @@ jobs:
       - name: formatage-code 
         run: autopep8 --in-place --aggressive --aggressive src/**/*.py
       
-  unit_tests:
+  tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - name: set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v6
@@ -50,13 +49,7 @@ jobs:
 
       - name: run-test-cov
         run: | 
-          PYTHONPATH=${{ env.PYTHONPATH }} pytest --cov --cov-config=${{ env.COVERAGE_RCFILE }}
-
-      - name: upload coverage report
-        uses: actions/upload-artifact@v4
-        with: 
-          name: coverage-report
-          path: ${{ env.COVERAGE_PATH }}
+          PYTHONPATH=${{ env.PYTHONPATH }} pytest --cov --cov-config=.coveragerc
 
 
       
