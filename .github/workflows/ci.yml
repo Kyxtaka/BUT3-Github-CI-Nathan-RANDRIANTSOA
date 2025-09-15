@@ -6,6 +6,7 @@ on:
 env: 
   PYTHON_VERSION: "3.12.10" 
   PYTHONPATH: "./src"
+  COVERAGE_RCFILE: ".coveragerc" 
 
 jobs:
 
@@ -25,7 +26,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: run-flake8
-        run: PYTHONPATH=./src flake8 **/*.py || true
+        run: PYTHONPATH=${{ env.PYTHONPATH }} flake8 **/*.py || true
 
       - name: formatage-code 
         run: autopep8 --in-place --aggressive --aggressive src/**/*.py
@@ -45,6 +46,8 @@ jobs:
 
       - name: run-test-cov
         run: | 
-          PYTHONPATH=./src pytest -cov=greeting
+          PYTHONPATH=${{ env.PYTHONPATH }} pytest --cov --cov-config=.coveragerc
+
+
       
       
