@@ -32,6 +32,6 @@ jobs:
 
       - name: run-test-cov
         run: | 
-          PYTHONPATH=./src pytest --cov=myproj tests/
+          PYTHONPATH=./src pytest --cov=greeting tests/
       
       
