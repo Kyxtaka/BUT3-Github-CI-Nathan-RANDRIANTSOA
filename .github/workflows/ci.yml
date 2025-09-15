@@ -6,18 +6,30 @@ on:
       - main
 
 jobs:
-  lint:
+  flake8:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - run: pip install pylint
+      - run: pip install flake8 autopep8
       - run: pip install -r requirements.txt
-      - run: PYTHONPATH=./src pylint **/*.py || true
+
+      - name: run-flake8
+        run: PYTHONPATH=./src flake8 **/*.py || true
+
+      - name: formatage-code 
+        run: autopep8 --in-place --aggressive --aggressive src/**/*.py
       
   tests:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
       - run: PYTHONPATH=./src pytest
+      - run: PYTHONPATH=./src pytest --cov=myproj tests/
+      
+      
