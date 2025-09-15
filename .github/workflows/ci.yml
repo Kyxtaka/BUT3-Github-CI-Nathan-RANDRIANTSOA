@@ -16,4 +16,8 @@ jobs:
       - run: pip install pylint
       - run: pip install -r requirements.txt
       - run: PYTHONPATH=./src pylint **/*.py || true
+      
+  tests:
+    runs-on: ubuntu-latest
+    steps:
       - run: PYTHONPATH=./src pytest
