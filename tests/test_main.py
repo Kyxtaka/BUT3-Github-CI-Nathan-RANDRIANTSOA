@@ -9,7 +9,7 @@ def test_greet():
 def test_add(): 
     assert add(5,7) == 12  
 
-def test_seb():
+def test_sub():
     assert sub(5 - 5) == 0
 
 
