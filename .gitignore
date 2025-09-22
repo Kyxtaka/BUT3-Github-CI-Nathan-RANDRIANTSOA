@@ -1,3 +1,5 @@
 .venv
 .pytest_cache
 *__pycache__
+src/mypackage.egg-info
+src/mypackage.egg-info/dependency_links.txt
