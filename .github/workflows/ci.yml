@@ -12,6 +12,7 @@ env:
   COVERAGE_RCFILE: ".coveragerc" 
   COVERAGE_PATH: "."
   WHL_PACKAGE_PATH: "./dist/mypackage-0.1-py3-none-any.whl"
+  PACKAGE_DIST_DIR: "./dist"
 
 jobs:
 
@@ -35,9 +36,8 @@ jobs:
       - name: upload whl package
         uses: actions/upload-artifact@v4
         with: 
-          name: mypackage.whl
+          name: mypackage
           path: ${{ env.WHL_PACKAGE_PATH }}
-
 
   linter:
     runs-on: ubuntu-latest
@@ -69,8 +69,8 @@ jobs:
       - name: download whl package
         uses: actions/download-artifact@v5
         with:
-          name: mypackage.whl
-          path: ${{ env.WHL_PACKAGE_PATH }}
+          name: mypackage.zip
+          path: ${{ env.PACKAGE_DIST_DIR }}
 
       - name: set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v6
