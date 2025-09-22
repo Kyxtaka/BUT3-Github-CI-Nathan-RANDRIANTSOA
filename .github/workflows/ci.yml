@@ -63,13 +63,14 @@ jobs:
       
   unit_tests:
     runs-on: ubuntu-latest
+    needs: build_package
     steps:
       - uses: actions/checkout@v5
 
       - name: download whl package
         uses: actions/download-artifact@v5
         with:
-          name: mypackage.zip
+          name: mypackage
           path: ${{ env.PACKAGE_DIST_DIR }}
 
       - name: set up python ${{ env.PYTHON_VERSION }}
