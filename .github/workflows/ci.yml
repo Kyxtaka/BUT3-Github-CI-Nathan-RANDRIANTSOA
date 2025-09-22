@@ -11,8 +11,33 @@ env:
   PYTHONPATH: "./src"
   COVERAGE_RCFILE: ".coveragerc" 
   COVERAGE_PATH: "."
+  WHL_PACKAGE_PATH: "./dist/mypackage-0.1-py3-none-any.whl"
+  PACKAGE_DIST_DIR: "./dist"
 
 jobs:
+
+  build_package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: setup python packagewith python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v6
+        with: 
+          python-version: ${{ env.PYTHON_VERSION }} 
+          cache: 'pip'
+
+      - name: install setup tools
+        run: pip install --upgrade build
+
+      - name: build package
+        run: python -m build
+
+      - name: upload whl package
+        uses: actions/upload-artifact@v4
+        with: 
+          name: mypackage
+          path: ${{ env.WHL_PACKAGE_PATH }}
 
   linter:
     runs-on: ubuntu-latest
@@ -23,6 +48,7 @@ jobs:
         uses: actions/setup-python@v6
         with: 
           python-version: ${{ env.PYTHON_VERSION }} 
+          cache: 'pip'
       
       - name: install dependencies 
         run: |
@@ -40,23 +66,31 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: download whl package
+        uses: actions/download-artifact@v5
+        with:
+          name: mypackage.zip
+          path: ${{ env.PACKAGE_DIST_DIR }}
+
       - name: set up python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v6
         with: 
           python-version: ${{ env.PYTHON_VERSION }} 
 
       - name: install-dependencies
-        run: pip install -r ./requirements.txt
+        run: pip install --force-reinstall ${{ env.WHL_PACKAGE_PATH }}
 
       - name: run-test-cov
         run: | 
-          PYTHONPATH=${{ env.PYTHONPATH }} pytest --cov --cov-config=${{ env.COVERAGE_RCFILE }}
+          pytest --cov --cov-config=${{ env.COVERAGE_RCFILE }}
 
       - name: upload coverage report
         uses: actions/upload-artifact@v4
         with: 
           name: coverage-report
           path: ${{ env.COVERAGE_PATH }}
+
+
 
 
       
