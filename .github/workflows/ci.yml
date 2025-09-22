@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./backend
-          file: ./backend/api.dockerfile
+          file: ./api.dockerfile
           push: true
           tags: | 
             docker.iut.arcanit.io/randriantsoa-nathan-backend:latest
