@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-python@v6
         with: 
           python-version: ${{ env.PYTHON_VERSION }} 
+          cache: 'pip'
       
       - name: install dependencies 
         run: |
@@ -57,6 +58,9 @@ jobs:
         with: 
           name: coverage-report
           path: ${{ env.COVERAGE_PATH }}
+
+  # build_package:
+  #   setuptools: 
 
 
       
