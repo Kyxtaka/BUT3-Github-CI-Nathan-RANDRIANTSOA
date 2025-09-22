@@ -81,7 +81,7 @@ jobs:
       - name: install-dependencies
         run: | 
           pip install --force-reinstall ${{ env.WHL_PACKAGE_PATH }}
-          pip install -r ./requirements
+          pip install -r ./requirements.txt
 
       - name: run-test-cov
         run: | 
