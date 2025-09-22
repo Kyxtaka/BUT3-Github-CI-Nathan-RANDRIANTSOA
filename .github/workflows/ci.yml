@@ -28,9 +28,7 @@ jobs:
           cache: 'pip'
 
       - name: install setup tools
-        run: | 
-          pip install --upgrade build
-          pip install -r ./requirements.txt
+        run: pip install --upgrade build
 
       - name: build package
         run: python -m build
@@ -55,6 +53,7 @@ jobs:
       - name: install dependencies 
         run: |
           pip install flake8 autopep8
+          pip install -r requirements.txt
 
       - name: run-flake8
         run: PYTHONPATH=${{ env.PYTHONPATH }} flake8 **/*.py || true
@@ -78,11 +77,11 @@ jobs:
         uses: actions/setup-python@v6
         with: 
           python-version: ${{ env.PYTHON_VERSION }} 
-          cache: 'pip'
 
       - name: install-dependencies
         run: | 
           pip install --force-reinstall ${{ env.WHL_PACKAGE_PATH }}
+          pip install -r ./requirements
 
       - name: run-test-cov
         run: | 
