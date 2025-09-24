@@ -24,12 +24,12 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./backend
-          file: ./api.dockerfile
+          file: ./backend/api.dockerfile
           push: true
           tags: | 
             docker.iut.arcanit.io/randriantsoa-nathan-backend:latest
             docker.iut.arcanit.io/randriantsoa-nathan-backend:${{ github.sha }}
-            
+
   push-docker-frontend:
     runs-on: ubuntu-latest
     steps: 
@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
-          file: ./web.dockerfile
+          file: ./frontend/web.dockerfile
           push: true
           tags: | 
             docker.iut.arcanit.io/randriantsoa-nathan-frontend:latest
