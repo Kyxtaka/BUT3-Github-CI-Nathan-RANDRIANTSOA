@@ -1,0 +1,17 @@
+services:
+  nathan-randriantsoa-frontend:
+    container_name: nathan-randriantsoa-frontend
+    image: docker.iut.arcanit.io/randriantsoa-nathan-frontend:latest
+    env_file: ./backend.env
+    restart: always
+    networks: [traefik]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dev-nathan-randriantsoa-frontend.rule=Host(`dev-randriantsoa-nathan.iut.arcanit.io`)"
+      - "traefik.http.routers.dev-nathan-randriantsoa-frontend.entrypoints=https"
+      - "traefik.http.routers.dev-nathan-randriantsoa-frontend.tls=true"
+      - "traefik.http.services.dev-nathan-randriantsoa-frontend.loadbalancer.server.port=80"
+
+networks:
+  traefik:
+    external: true
