@@ -66,7 +66,7 @@ jobs:
       mode: dev
       env_mode: dev
       prefix: dev-
-      app_directory: /home/student/apps/nathan-dev
+      app_directory: "/home/student/apps/nathan-dev"
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
@@ -80,7 +80,7 @@ jobs:
       mode: test
       env_mode: dev
       prefix: test-
-      app_directory: /home/student/apps/nathan-test 
+      app_directory: "/home/student/apps/nathan-test"
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
@@ -95,7 +95,7 @@ jobs:
       mode: 
       env_mode: prod
       prefix:
-      app_directory: /home/student/apps/nathan-prod  
+      app_directory: "/home/student/apps/nathan-prod"  
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
