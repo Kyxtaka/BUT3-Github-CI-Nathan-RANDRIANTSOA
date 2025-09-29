@@ -70,7 +70,7 @@ jobs:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
     
-  deploy-tests:
+  deploy-test:
     # needs:
     #   - push-docker-backend
     #   - push-docker-frontend
@@ -84,7 +84,7 @@ jobs:
       PASSWORD: ${{ secrets.PASSWORD }}
     
 
-    deploy-prod:
+  deploy-prod:
     # needs:
     #   - push-docker-backend
     #   - push-docker-frontend

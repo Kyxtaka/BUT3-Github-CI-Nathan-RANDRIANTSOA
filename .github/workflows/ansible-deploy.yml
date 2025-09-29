@@ -15,7 +15,7 @@ on:
         required: true
         type: string
 
-      prefixe:
+      prefix:
         description: 'env deployement mode'
         default: dev-
         required: true
@@ -58,4 +58,4 @@ jobs:
             -e "registry_password=${{ secrets.PASSWORD }}" \
             -e "mode"=${{ inputs.mode }} \
             -e "env_mode"=${{ inputs.env_mode }} \
-            -e "domaine_prefix"=${{ inputs.prefixe }}
+            -e "domaine_prefix"=${{ inputs.prefix }}
