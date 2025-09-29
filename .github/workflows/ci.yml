@@ -65,7 +65,7 @@ jobs:
     with: 
       mode: dev
       env_mode: dev
-      prefix: "dev-"
+      prefix: dev-
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
@@ -78,7 +78,7 @@ jobs:
     with: 
       mode: test
       env_mode: dev
-      prefix: "test-"
+      prefix: test-
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
@@ -90,9 +90,9 @@ jobs:
     #   - push-docker-frontend
     uses: ./.github/workflows/ansible-deploy.yml
     with: 
-      mode: ""
+      mode: 
       env_mode: prod
-      prefix: ""
+      prefix: 
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}

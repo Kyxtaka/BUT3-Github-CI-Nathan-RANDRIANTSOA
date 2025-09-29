@@ -5,7 +5,7 @@ on:
     inputs: 
       mode: 
         description: 'deployement mode'
-        default: ""
+        default: 
         required: true
         type: string
 
@@ -17,7 +17,7 @@ on:
 
       prefix:
         description: 'env deployement mode'
-        default: ""
+        default: 
         required: true
         type: string
 

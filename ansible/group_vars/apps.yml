@@ -6,6 +6,6 @@ registry_password: secret # This will be overriden from GitHub secrets
 
 image_tag: latest
 
-mode: "prod" # mode de déploiment ==> Overriden
-env_mode: dev #
-domaine_prefix: ""
+mode:  # mode de déploiment ==> Overriden
+env_mode: prod #
+domaine_prefix: 
