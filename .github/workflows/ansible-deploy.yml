@@ -25,6 +25,7 @@ on:
         description: 'container directory'
         required: true
         default: "/home/student/apps/nathan-prod"
+        type: string
 
     secrets:
       SSHKEY:
