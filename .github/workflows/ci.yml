@@ -63,7 +63,8 @@ jobs:
     #   - push-docker-frontend
     uses: ./.github/workflows/ansible-deploy.yml
     with: 
-      mode: 'dev'
+      mode: dev
+      env_mode: dev
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
