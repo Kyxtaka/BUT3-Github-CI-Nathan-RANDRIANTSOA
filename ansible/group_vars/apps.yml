@@ -8,4 +8,4 @@ image_tag: latest
 
 mode: dev # mode de déploiment ==> Overriden
 env_mode: dev #
-domaine_prefix: dev-
+domaine_prefix: ""

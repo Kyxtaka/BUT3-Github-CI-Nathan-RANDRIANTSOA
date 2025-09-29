@@ -17,7 +17,7 @@ on:
 
       prefix:
         description: 'env deployement mode'
-        default: dev-
+        default: ""
         required: true
         type: string
 
