@@ -5,13 +5,13 @@ on:
     inputs: 
       mode: 
         description: 'deployement mode'
-        default: dev
+        default: ""
         required: true
         type: string
 
       env_mode: 
         description: 'env deployement mode'
-        default: dev
+        default: prod
         required: true
         type: string
 
