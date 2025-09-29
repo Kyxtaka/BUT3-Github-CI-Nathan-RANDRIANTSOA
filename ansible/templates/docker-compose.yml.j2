@@ -34,7 +34,7 @@ services:
       - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.replacement=https://nathan-api.iut.arcanit.io/$${1}" 
       - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.permanent=true"
 
-    #   - "traefik.http.routers.{{ mode }}-api-redirect-router.middlewares={{ mode }}-api-redirect"
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.middlewares={{ mode }}-api-redirect"
       
        
 
