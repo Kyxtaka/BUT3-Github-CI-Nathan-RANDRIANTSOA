@@ -5,3 +5,6 @@ registry_login: admin
 registry_password: secret # This will be overriden from GitHub secrets
 
 image_tag: latest
+
+mode: dev # mode de déploiment ==> Overriden
+env_mode: dev #

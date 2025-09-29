@@ -8,6 +8,13 @@ on:
         default: 'dev'
         required: true
         type: string
+
+      env_mode: 
+        description: 'env deployement mode'
+        default: 'dev'
+        required: true
+        type: string
+        
     secrets:
       SSHKEY:
         required: true
@@ -43,3 +50,5 @@ jobs:
             -i inventory.ini \
             -e "image_tag=${{ github.sha }}" \
             -e "registry_password=${{ secrets.PASSWORD }}"
+            -e "mode"=${{ inputs.mode }}
+            -e "env_mode"=${{ inputs.env_mode }}

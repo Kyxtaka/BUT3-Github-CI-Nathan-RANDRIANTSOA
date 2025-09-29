@@ -15,14 +15,24 @@
         username: "{{ registry_login }}"
         password: "{{ registry_password }}"
 
-    - name: Copier le fichier docker-compose.yml dans le répertoire de l'application
-      copy:
-        src: "docker-compose.yml"
+    # - name: Copier le fichier docker-compose.yml dans le répertoire de l'application
+    #   copy:
+    #     src: "docker-compose.yml"
+    #     dest: "{{ app_directory }}/docker-compose.yml"
+
+    # - name: Copier le fichier backend.env dans le répertoire de l'application
+    #   copy:
+    #     src: "backend.env"
+    #     dest: "{{ app_directory }}/backend.env"
+
+    - name: create backend.env with jinja tmplates
+      ansible.builtin.template:
+        src: /templates/docker-compose.yml.j2
         dest: "{{ app_directory }}/docker-compose.yml"
 
-    - name: Copier le fichier backend.env dans le répertoire de l'application
-      copy:
-        src: "backend.env"
+    - name: create backend.env with jinja tmplates
+      ansible.builtin.tmplate:
+        src: /templates/backend.env.j2
         dest: "{{ app_directory }}/backend.env"
 
     - name: Puller les images Docker avec docker-compose
