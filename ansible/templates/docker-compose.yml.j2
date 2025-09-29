@@ -7,7 +7,7 @@ services:
     networks: [traefik]
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-frontend.rule=Host(`{{ mode }}-randriantsoa-nathan.iut.arcanit.io`)"
+      - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-frontend.rule=Host(`{{ domaine_prefixe }}randriantsoa-nathan.iut.arcanit.io`)"
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-frontend.entrypoints=https"
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-frontend.tls=true"
       - "traefik.http.services.{{ mode }}-nathan-randriantsoa-frontend.loadbalancer.server.port=80"
@@ -20,7 +20,7 @@ services:
     networks: [traefik]
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.rule=Host(`nathan-api.iut.arcanit.io`)"
+      - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.rule=Host(`{{ domaine_prefixe }}nathan-api.iut.arcanit.io`)"
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.entrypoints=https"
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.tls=true"
       - "traefik.http.services.{{ mode }}-nathan-randriantsoa-backend.loadbalancer.server.port=80"      

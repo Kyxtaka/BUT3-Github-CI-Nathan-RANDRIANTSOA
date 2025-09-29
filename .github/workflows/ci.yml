@@ -57,7 +57,7 @@ jobs:
   #           ${{ secrets.ADRESSE }}/randriantsoa-nathan-frontend:latest
   #           ${{ secrets.ADRESSE }}/randriantsoa-nathan-frontend:${{ github.sha }}
 
-  deploy-app:
+  deploy-dev:
     # needs:
     #   - push-docker-backend
     #   - push-docker-frontend
@@ -65,8 +65,35 @@ jobs:
     with: 
       mode: dev
       env_mode: dev
+      prefix: "dev-"
+    secrets:
+      SSHKEY: ${{ secrets.SSHKEY }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+    
+  deploy-tests:
+    # needs:
+    #   - push-docker-backend
+    #   - push-docker-frontend
+    uses: ./.github/workflows/ansible-deploy.yml
+    with: 
+      mode: test
+      env_mode: test
+      prefix: "test-"
     secrets:
       SSHKEY: ${{ secrets.SSHKEY }}
       PASSWORD: ${{ secrets.PASSWORD }}
     
 
+    deploy-prod:
+    # needs:
+    #   - push-docker-backend
+    #   - push-docker-frontend
+    uses: ./.github/workflows/ansible-deploy.yml
+    with: 
+      mode: ""
+      env_mode: prod
+      prefix: ""
+    secrets:
+      SSHKEY: ${{ secrets.SSHKEY }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+    
