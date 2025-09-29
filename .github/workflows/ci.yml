@@ -61,7 +61,7 @@ jobs:
     # needs:
     #   - push-docker-backend
     #   - push-docker-frontend
-    uses: ././github/workflows/ansible-deploy.yml
+    uses: ./.github/workflows/ansible-deploy.yml
     with: 
       mode: 'dev'
     secrets:
