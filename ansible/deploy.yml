@@ -31,7 +31,7 @@
         dest: "{{ app_directory }}/docker-compose.yml"
 
     - name: create backend.env with jinja tmplates
-      ansible.builtin.tmplate:
+      ansible.builtin.template:
         src: "/templates/backend.env.j2"
         dest: "{{ app_directory }}/backend.env"
 
