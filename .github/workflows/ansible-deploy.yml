@@ -21,6 +21,11 @@ on:
         required: true
         type: string
 
+      app_directory:
+        description: 'container directory'
+        required: true
+        default: "/home/student/apps/nathan-prod"
+
     secrets:
       SSHKEY:
         required: true
@@ -58,4 +63,5 @@ jobs:
             -e "registry_password=${{ secrets.PASSWORD }}" \
             -e "mode"=${{ inputs.mode }} \
             -e "env_mode"=${{ inputs.env_mode }} \
-            -e "domaine_prefix"=${{ inputs.prefix }}
+            -e "domaine_prefix"=${{ inputs.prefix }} \
+            -e "app_directory"=${{ inputs.app_directory }}
