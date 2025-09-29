@@ -24,8 +24,18 @@ services:
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.entrypoints=https"
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.tls=true"
       - "traefik.http.services.{{ mode }}-nathan-randriantsoa-backend.loadbalancer.server.port=80"
-      - "traefik.http.middlewares.{{ mode }}-redirectregex.redirectregex.regex=^https://nathan-api.iut.arcanit.io/(.*)"
-      - "traefik.http.middlewares.{{ mode }}-redirectregex.redirectregex.replacement=https://{{ domaine_prefix }}nathan-api.iut.arcanit.io/$${1}" 
+
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.rule=Host(`nathan-api.iut.arcanit.io`)"
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.entrypoints=https"
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.tls=true"
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.service={{ mode }}-nathan-randriantsoa-backend"
+
+      - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.regex=^https?://nathan-api.iut.arcanit.io/(.*)"
+      - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.replacement=https://{{ domaine_prefix }}nathan-api.iut.arcanit.io/$${1}" 
+      - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.permanent=true"
+      
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.middlewares={{ mode }}-api-redirect"
+      
        
 
 networks:
