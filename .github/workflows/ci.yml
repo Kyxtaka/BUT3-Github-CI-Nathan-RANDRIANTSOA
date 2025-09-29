@@ -60,7 +60,7 @@ jobs:
   deploy-dev:
     name: Deploy to dev server
     runs-on: ubuntu-latest
-    needs: [" push-docker-backend"] #, "push-docker-frontend"
+    needs: ["push-docker-backend"] #, "push-docker-frontend"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
