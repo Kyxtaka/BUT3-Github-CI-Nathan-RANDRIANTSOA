@@ -1,3 +1,5 @@
+name: Ansible Deploy
+
 on: 
   workflow_call:
     inputs: 
