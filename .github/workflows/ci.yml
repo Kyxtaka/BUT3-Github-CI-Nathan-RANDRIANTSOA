@@ -75,6 +75,7 @@ jobs:
     needs:
       - push-docker-backend
       - push-docker-frontend
+      - deploy-dev
     uses: ./.github/workflows/ansible-deploy.yml
     with: 
       mode: test
@@ -90,6 +91,7 @@ jobs:
     needs:
       - push-docker-backend
       - push-docker-frontend
+      - deploy-test
     uses: ./.github/workflows/ansible-deploy.yml
     with: 
       mode: ""
