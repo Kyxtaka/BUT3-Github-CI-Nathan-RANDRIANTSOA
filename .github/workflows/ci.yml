@@ -79,7 +79,7 @@ jobs:
     uses: ./.github/workflows/ansible-deploy.yml
     with: 
       mode: test
-      env_mode: dev
+      env_mode: test
       prefix: test-
       app_directory: "/home/student/apps/randriantsoa-nathan-test"
     secrets:
