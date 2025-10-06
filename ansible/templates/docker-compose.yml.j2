@@ -20,7 +20,7 @@ services:
     networks: [traefik]
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.rule=Path(`{{ domaine_prefix }}randriantsoa-nathan.iut.arcanit.io`) && PathPrefix(`/api`)
+      - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.rule=Host(`{{ domaine_prefix }}randriantsoa-nathan.iut.arcanit.io`) && PathPrefix(`/api`)
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.entrypoints=https"
       - "traefik.http.routers.{{ mode }}-nathan-randriantsoa-backend.tls=true"
       - "traefik.http.services.{{ mode }}-nathan-randriantsoa-backend.loadbalancer.server.port=80"
