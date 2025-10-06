@@ -20,17 +20,10 @@ services:
     networks: [traefik]
     labels:
       - "traefik.enable=true"
-
-      - "traefik.http.routers.{{ mode }}-api-redirect-router.rule=Host(`{{ domaine_prefix }}nathan-api.iut.arcanit.io`)"
+      - "traefik.http.routers.{{ mode }}-api-redirect-router.rule=HostRegexp(`[a-z]+\\nathan-api\\.iut.arcanit.io`)"
       - "traefik.http.routers.{{ mode }}-api-redirect-router.entrypoints=https"
       - "traefik.http.routers.{{ mode }}-api-redirect-router.tls=true"
       - "traefik.http.routers.{{ mode }}-api-redirect-router.service=@internal" 
-
-      - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.regex=^https?://nathan-api.iut.arcanit.io/(.*)"
-      - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.replacement=https://{{ domaine_prefix }}nathan-api.iut.arcanit.io/$${1}" 
-      - "traefik.http.middlewares.{{ mode }}-api-redirect.redirectregex.permanent=true"
-      - "traefik.http.routers.{{ mode }}-api-redirect-router.middlewares={{ mode }}-api-redirect-router"
-      
        
 
 networks:
