@@ -113,8 +113,8 @@ jobs:
       - push-docker-frontend
     uses: ./.github/workflows/ansible-deploy.yml
     with:
-      mode: test
-      env_mode: test
+      mode: pr
+      env_mode: pr
       prefix: pr-${{ github.event.pull_request.number }}-
       app_directory: "/home/student/apps/randriantsoa-nathan-pr"
     secrets:
