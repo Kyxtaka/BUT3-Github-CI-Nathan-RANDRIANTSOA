@@ -10,7 +10,7 @@ on:
 jobs:
   push-docker-backend:
     runs-on: ubuntu-latest
-    environment : production
+    environment : dev
     steps: 
       - uses: actions/checkout@v3
 
@@ -36,7 +36,7 @@ jobs:
 
   push-docker-frontend:
     runs-on: ubuntu-latest
-    environment : production
+    environment : dev
     steps: 
       - uses: actions/checkout@v3
 
@@ -61,6 +61,7 @@ jobs:
             ${{ secrets.ADRESSE }}/randriantsoa-nathan-frontend:${{ github.sha }}
 
   deploy-dev:
+    environment: dev
     needs:
       - push-docker-backend
       - push-docker-frontend
@@ -75,6 +76,7 @@ jobs:
       PASSWORD: ${{ secrets.PASSWORD }}
     
   deploy-test:
+    environment: test
     needs:
       - push-docker-backend
       - push-docker-frontend
@@ -91,6 +93,7 @@ jobs:
     
 
   deploy-prod:
+    environment: production
     needs:
       - push-docker-backend
       - push-docker-frontend
