@@ -1,12 +1,12 @@
 name: CD deployement Docker
-environnement: production
+
 on:
   push:
     branches: [ main ]  
   pull_request:
     branches:
       - main
-
+environnement: production
 jobs:
   push-docker-backend:
     runs-on: ubuntu-latest
