@@ -75,7 +75,6 @@ jobs:
       PASSWORD: ${{ secrets.PASSWORD }}
     
   deploy-test:
-    environment: test
     needs:
       - push-docker-backend
       - push-docker-frontend
