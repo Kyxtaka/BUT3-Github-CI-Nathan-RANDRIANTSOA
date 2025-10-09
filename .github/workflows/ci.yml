@@ -1,4 +1,5 @@
 name: CD deployement Docker
+environnement: production
 on:
   push:
     branches: [ main ]  
