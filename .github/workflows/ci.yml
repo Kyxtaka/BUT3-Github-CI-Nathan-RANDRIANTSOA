@@ -8,7 +8,6 @@ on:
 
 jobs:
   push-docker-backend:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -35,7 +34,6 @@ jobs:
             ${{ secrets.ADRESSE }}/randriantsoa-nathan-backend:${{ github.sha }}
 
   push-docker-frontend:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -113,9 +111,6 @@ jobs:
 
   deploy-pr:
     if: github.event_name == 'pull_request'
-    needs:
-      - push-docker-backend
-      - push-docker-frontend
     uses: ./.github/workflows/ansible-deploy.yml
     with:
       mode: pr
@@ -145,14 +140,23 @@ jobs:
         npm ci
 
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: |
+        cd ./playwright
+        npx playwright install --with-deps
+
+    # - name: create prefix
+    #   run: |
+    #     cd ./playwright
+    #     echo "PREF=pr-${{ github.event.pull_request.number }}-" > .env
 
     - name: Run Playwright tests
-      run: npx playwright test
-
-    - name: create prefix
+      working-directory:  ./playwright 
       run: |
-        echo "PREF=${{ pr-${{ github.event.pull_request.number }}- }}" > .env
+        npx playwright test
+      env:
+        PREF: pr-${{ github.event.pull_request.number }}
+
+   
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}

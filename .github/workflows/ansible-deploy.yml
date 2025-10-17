@@ -27,12 +27,12 @@ on:
         default: "/home/student/apps/nathan-prod"
         type: string
 
-      inputs:
-        git_env:
-          description: github environment
-          defulault: dev
-          type: string
-          required: false
+      git_env:
+        description: github environment
+        default: dev
+        required: false
+        type: string
+          
 
     secrets:
       SSHKEY:
