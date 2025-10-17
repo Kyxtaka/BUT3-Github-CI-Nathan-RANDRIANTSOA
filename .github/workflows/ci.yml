@@ -113,9 +113,6 @@ jobs:
 
   deploy-pr:
     if: github.event_name == 'pull_request'
-    needs:
-      - push-docker-backend
-      - push-docker-frontend
     uses: ./.github/workflows/ansible-deploy.yml
     with:
       mode: pr
