@@ -29,7 +29,7 @@ on:
 
       git_env:
         description: github environment
-        defulault: dev
+        default: dev
         required: false
         type: string
           
