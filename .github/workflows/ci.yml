@@ -152,7 +152,7 @@ jobs:
 
     - name: create prefix
       run: |
-        echo "PREF=${{ pr-${{ github.event.pull_request.number }}- }}" > .env
+        echo "PREF=pr-${{ github.event.pull_request.number }}-" > .env
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
