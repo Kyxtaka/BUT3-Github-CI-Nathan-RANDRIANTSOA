@@ -140,14 +140,21 @@ jobs:
         npm ci
 
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-
-    - name: Run Playwright tests
-      run: npx playwright test
+      run: |
+        cd ./playwright
+        npx playwright install --with-deps
 
     - name: create prefix
       run: |
+        cd ./playwright
         echo "PREF=pr-${{ github.event.pull_request.number }}-" > .env
+
+    - name: Run Playwright tests
+      run: |
+        cd ./playwright 
+        npx playwright test
+
+   
 
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
