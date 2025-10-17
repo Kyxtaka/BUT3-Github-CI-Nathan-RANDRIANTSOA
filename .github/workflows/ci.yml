@@ -8,7 +8,6 @@ on:
 
 jobs:
   push-docker-backend:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -35,7 +34,6 @@ jobs:
             ${{ secrets.ADRESSE }}/randriantsoa-nathan-backend:${{ github.sha }}
 
   push-docker-frontend:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: dev
     steps:
