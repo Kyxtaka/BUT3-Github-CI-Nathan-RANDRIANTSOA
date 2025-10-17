@@ -27,12 +27,11 @@ on:
         default: "/home/student/apps/nathan-prod"
         type: string
 
-      inputs:
-        git_env:
-          description: github environment
-          defulault: dev
-          required: true
-          type: string
+      git_env:
+        description: github environment
+        defulault: dev
+        required: false
+        type: string
           
 
     secrets:
