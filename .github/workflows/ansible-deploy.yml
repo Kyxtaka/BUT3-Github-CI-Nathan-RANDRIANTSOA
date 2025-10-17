@@ -27,6 +27,13 @@ on:
         default: "/home/student/apps/nathan-prod"
         type: string
 
+      inputs:
+        git_env:
+          description: github environment
+          defulault: dev
+          type: string
+          required: false
+
     secrets:
       SSHKEY:
         required: true
@@ -35,6 +42,7 @@ on:
 
 jobs: 
   reusable-deploy:
+    environment: ${{ inputs.git_env }}
     name: Deploy to dev server
     runs-on: ubuntu-latest
     steps:
