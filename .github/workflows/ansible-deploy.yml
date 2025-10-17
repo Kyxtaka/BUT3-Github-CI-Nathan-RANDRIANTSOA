@@ -31,8 +31,9 @@ on:
         git_env:
           description: github environment
           defulault: dev
+          required: true
           type: string
-          required: false
+          
 
     secrets:
       SSHKEY:
