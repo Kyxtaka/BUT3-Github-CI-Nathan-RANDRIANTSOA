@@ -144,15 +144,17 @@ jobs:
         cd ./playwright
         npx playwright install --with-deps
 
-    - name: create prefix
-      run: |
-        cd ./playwright
-        echo "PREF=pr-${{ github.event.pull_request.number }}-" > .env
+    # - name: create prefix
+    #   run: |
+    #     cd ./playwright
+    #     echo "PREF=pr-${{ github.event.pull_request.number }}-" > .env
 
     - name: Run Playwright tests
+      working_directory:  ./playwright 
       run: |
-        cd ./playwright 
         npx playwright test
+      env:
+        PREF: pr-${{ github.event.pull_request.number }}
 
    
 
