@@ -150,7 +150,7 @@ jobs:
     #     echo "PREF=pr-${{ github.event.pull_request.number }}-" > .env
 
     - name: Run Playwright tests
-      working_directory:  ./playwright 
+      working-directory:  ./playwright 
       run: |
         npx playwright test
       env:
